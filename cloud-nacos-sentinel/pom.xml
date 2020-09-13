@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.hyman</groupId>
+	<artifactId>cloud-nacos-sentinel</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>cloud-nacos-sentinel</name>
+	<description>Demo project for Spring Boot</description>
+
+	<parent>
+		<!-- 子项目中需要显示声明父类，才能有明确的继承表现，无意外就是父类的默认版本否则自己定义（这里是手动添加的） -->
+		<groupId>com.hyman</groupId>
+		<artifactId>SpringCloudAlibabaDemo</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<dependencies>
+		<!-- sentinel 集成 nacos 的 jar -->
+		<dependency>
+			<groupId>com.alibaba.csp</groupId>
+			<artifactId>sentinel-datasource-nacos</artifactId>
+			<version>1.7.1</version>
+		</dependency>
+
+		<!-- sentinel 集成 dubbo 的 jar -->
+		<dependency>
+			<groupId>com.alibaba.csp</groupId>
+			<artifactId>sentinel-apache-dubbo-adapter</artifactId>
+			<version>1.7.1</version>
+		</dependency>
+		<!-- sentinel dashboard 集成 dubbo 的 jar -->
+		<dependency>
+			<groupId>com.alibaba.csp</groupId>
+			<artifactId>sentinel-transport-simple-http</artifactId>
+			<version>1.7.1</version>
+		</dependency>
+		<!-- sentinel 热点参数限流 -->
+		<dependency>
+			<groupId>com.alibaba.csp</groupId>
+			<artifactId>sentinel-parameter-flow-control</artifactId>
+			<version>1.7.1</version>
+		</dependency>
+
+		<!-- gateway 集成 sentinel -->
+		<dependency>
+			<groupId>com.alibaba.csp</groupId>
+			<artifactId>sentinel-spring-cloud-gateway-adapter</artifactId>
+			<version>1.7.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<!-- optional=true，依赖不会往下传递，如果有项目依赖本项目，并且想要使用devtools，需要重新引入 -->
+			<optional>true</optional>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<fork>true</fork>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

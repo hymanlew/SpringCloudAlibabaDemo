@@ -1,0 +1,35 @@
+
+server:
+  port: 3345
+
+spring:
+  application:
+#   这个名称必须与 github 上对应的配置的名称一致，否则无法正常加载
+    name: microservice-config-server-eureka
+
+  cloud:
+    config:
+      server:
+        git:
+          # github 上的 git 仓库名字（是一个单独存储 yml 配置文件的项目，没有其他东西），即指定 config server在 git上的 yml 配置。
+          # 以让 config client 动态获取仓库中的配置文件信息。不可以使用 git@github 方式进行访问。
+          uri: https://github.com/hymanlew/SpringCloudAlibabaDemo.git
+          username: hymanlew
+          password: hymanlew
+
+# 集群模式
+eureka:
+  # 客户端注册进 eureka 服务列表内
+  client:
+    service-url:
+      # 单机版，只有一个注册中心时
+      # defaultZone: http://localhost:7001/eureka
+      # 集群版，同时有多个注册中心时（其中 eureka7001 设置了登录验证）
+      defaultZone: http://admin:admin@eureka7001:7001/eureka/,http://eureka7002:7002/eureka/,http://eureka7003:7003/eureka/
+    # 从 eureka 服务器获取注册表信息的频率，以秒为单位
+    registry-fetch-interval-seconds: 30
+  instance:
+    # 自定义在注册中心页面显示的微服务的名称
+    instance-id: microservice-config-server-eureka-3345
+    # 设置显示微服务名称链接的访问路径 IP 地址
+    prefer-ip-address: true

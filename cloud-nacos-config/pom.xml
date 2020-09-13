@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.hyman</groupId>
+		<artifactId>SpringCloudAlibabaDemo</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<groupId>com.hyman</groupId>
+	<artifactId>cloud-nacos-config</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>cloud-nacos-config</name>
+	<description>服务注册中心</description>
+
+	<dependencies>
+		<!-- nacos-config 单独整合到 springcloud -->
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+			<version>2.1.1.RELEASE</version>
+		</dependency>
+
+		<!-- sentinel 单独整合到 springcloud -->
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+			<version>2.1.1.RELEASE</version>
+		</dependency>
+
+		<!-- seata 单独整合到 springcloud，实际环境中也是这么用的，需要在每个 cloud 服务中都进行引入 -->
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-alibaba-seata</artifactId>
+			<version>2.1.1.RELEASE</version>
+		</dependency>
+
+		<!-- seata 单独整合到 springcloud，实际环境中也是这么用的，需要在每个 cloud 服务中都进行引入 -->
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-stream-binder-rocketmq</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+	</dependencies>
+
+	<!--
+	下面这个插件是用来运行 Springboot的，通常有两种方式可以运行 SpringBoot：
+	一种是通过直接运行main方法。
+	另外一种是通过使用下面的插件运行。
+
+	两种方式是有差别的，一旦项目中需要访问资源的时候就需要通过插件运行，否则无法访问到资源。
+	即这个插件可以把项目打包成可执行的 jar 包。
+	-->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

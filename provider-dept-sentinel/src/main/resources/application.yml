@@ -1,0 +1,65 @@
+server:
+  port: 8001
+  
+mybatis:
+  config-location: classpath:mybatis-config.xml             # mybatis配置文件所在路径
+  mapper-locations: classpath:mapper/*.xml                  # mapper映射文件
+
+spring:
+  application:
+#   这个名字很重要，是注册到注册中心必须用到的，也是服务发现时用到的名字。并且必须要对外显露统一的服务实例名称，不能更改。
+    name: microservice-provider-dept
+  datasource:
+#   数据源基本配置
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?serverTimezone=GMT%2B8&autoReconnect=true&rewriteBatchedStatements=true&allowMultiQueries=true&useSSL=false&useUnicode=true&characterEncoding=utf8&characterSetResults=utf-8
+    type: com.alibaba.druid.pool.DruidDataSource
+#   数据源其他配置
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+#   配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+#   filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+      
+eureka:
+  # 客户端注册进 eureka 服务列表内
+  client:
+    service-url:
+#    单机版，只有一个注册中心时
+#      defaultZone: http://localhost:7001/eureka
+#     集群版，同时有多个注册中心时
+      defaultZone: http://admin:admin@eureka7001:7001/eureka/,http://eureka7002:7002/eureka/,http://eureka7003:7003/eureka/
+  instance:
+    # 自定义在注册中心页面显示的微服务的名称
+    instance-id: provider-dept-8001-hystrix
+    # 设置显示微服务名称链接的访问路径 IP 地址
+    prefer-ip-address: true
+
+
+# 如果配置ribbon的重试，hystrix的超时时间要大于ribbon的超时时间，ribbon才会重试。Hystrix 默认的超时时间是 1秒。
+hystrix:
+  command:
+#   default全局有效，service id 指定应用有效
+    default:
+      execution:
+        timeout:
+#         如果 enabled 设置为 false，则请求超时交给 ribbon控制。如果为 true，则超时作为熔断根据
+          enabled: true
+        isolation:
+          thread:
+#           断路器超时时间，默认1000ms
+            timeoutInMilliseconds: 3000
+

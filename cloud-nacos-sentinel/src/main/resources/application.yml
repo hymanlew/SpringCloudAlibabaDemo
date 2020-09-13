@@ -1,0 +1,171 @@
+server:
+  port: 3344
+
+spring:
+  application:
+#   这个名字很重要，是注册到注册中心必须用到的，也是服务发现时用到的名字。并且必须要对外显露统一的服务实例名称，不能更改。
+    name: microservice-config-server
+  cloud:
+    config:
+      server:
+        git:
+#         github 上的 git 仓库名字（是一个单独存储 yml 配置文件的项目，没有其他东西），即指定 config server在 git上的 yml 配置。
+#         以让 config client 动态获取仓库中的配置文件信息。不可以使用 git@github 方式进行访问。
+          uri: https://github.com/hymanlew/SpringCloudAlibabaDemo.git
+          username: hymanlew
+          password: hymanlew
+
+# 访问时，使用以下方式（application=application name，label=git batch name(默认是 master)，profile=各个环境上的配置）：
+# /{application}/{profile}[/{label}]
+# /{application}-{profile}.yml
+# /{label}/{application}-{profile}.yml
+# /{application}-{profile}.properties
+# /{label}/{application}-{profile}.properties
+
+# 例如，localhost:3344/microservice-config-server-default.yml，并且无论是哪个服务名称，它都会访问到 git 指定的路径中，去获取
+# application.* 文件的数据：
+# 1，首先它会先搜索配置服务器中有没有被访问的同名的文件，有则就直接读取该文件的数据。
+# 2，如果没有，就会到 application.yml/properties 文件中去读取数据。
+# 3，如果仍然没有找到，则会抛异常。
+
+# 也可以配置 uri 为，https://github.com/hymanlew/{application}
+# 则此时引用的配置就会是灵活的，即只要是在访问时的 application-name 在 git 中有对应的仓库配置文件，则就会访问到对应的配置。
+
+
+# git 上 server 端的 yml 配置（application-server.yml）
+#---
+#spring:
+#  profiles:
+#    active: dev
+#
+#---
+#spring:
+#  profiles: dev
+#  application:
+#    name: microservice-config-server-dev
+#
+#---
+#spring:
+#  profiles: test
+#  application:
+#    name: microservice-config-server-test
+
+
+# git 上 client 端的 yml 配置（microservice-config-client.yml）
+#---
+#spring:
+#  profiles:
+#    active: dev
+#
+#---
+#spring:
+#  profiles: dev
+#  application:
+#    name: microservice-config-client
+#server:
+#  port: 8201
+#eureka:
+#  client:
+#    service-url: http://eureka-dev.com:7001/eureka
+#
+#---
+#spring:
+#  profiles: test
+#  application:
+#    name: microservice-config-client
+#server:
+#  port: 8202
+#eureka:
+#  client:
+#    service-url: http://eureka-test.com:7001/eureka
+
+
+# git 上 eureka-client 端的 yml 配置（microservice-config-eureka-client.yml）
+#---
+#spring:
+#  profiles:
+#    active: dev
+#
+#---
+#spring:
+#  profiles: dev
+#  application:
+#    name: microservice-config-eureka-client
+#server:
+#  port: 7001
+#eureka:
+#  instance:
+#    hostname: eureka7001
+#  client:
+#    # false 表示不向注册中心注册自己
+#    register-with-eureka: false
+#    # false 表示自己就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
+#    fetch-registry: false
+#    service-url:
+#        defaultZone: http://admin:admin@eureka7001:7001/eureka/
+#
+#---
+#spring:
+#  profiles: test
+#  application:
+#    name: microservice-config-eureka-client
+#server:
+#  port: 7001
+#eureka:
+#  instance:
+#    hostname: eureka7001
+#  client:
+#    # false 表示不向注册中心注册自己
+#    register-with-eureka: false
+#    # false 表示自己就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
+#    fetch-registry: false
+#    service-url:
+#        defaultZone: http://admin:admin@eureka7001:7001/eureka/
+
+
+# git 上 dept-client 端的 yml 配置（microservice-config-dept-client.yml）
+#---
+#spring:
+#  profiles:
+#    active: dev
+#
+#---
+#spring:
+#  profiles: dev
+#  application:
+#    name: microservice-config-dept-client
+#  datasource:
+#    username: root
+#    password: 123456
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/test?serverTimezone=GMT%2B8&autoReconnect=true&rewriteBatchedStatements=true&allowMultiQueries=true&useSSL=false&useUnicode=true&characterEncoding=utf8&characterSetResults=utf-8
+#    type: com.alibaba.druid.pool.DruidDataSource
+#server:
+#  port: 8001
+#eureka:
+#  instance:
+#    # 自定义在注册中心页面显示的微服务的名称
+#    instance-id: dept-client-8001
+#    # 设置显示微服务名称链接的访问路径 IP 地址
+#    prefer-ip-address: true
+#  client:
+#    service-url:
+#        defaultZone: http://admin:admin@eureka7001:7001/eureka/
+#mybatis:
+#  config-location: classpath:mybatis-config.xml             # mybatis配置文件所在路径
+#  mapper-locations: classpath:mapper/*.xml                  # mapper映射文件
+
+#---
+#spring:
+#  profiles: test
+#  application:
+#    name: microservice-config-dept-client
+#server:
+#  port: 8001
+#eureka:
+#  instance:
+#    instance-id: dept-client-8001
+#    prefer-ip-address: true
+#  client:
+#    service-url:
+#        defaultZone: http://admin:admin@eureka7001:7001/eureka/

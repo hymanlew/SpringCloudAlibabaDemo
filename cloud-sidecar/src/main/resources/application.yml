@@ -1,0 +1,29 @@
+server:
+  port: 8097
+
+spring:
+  application:
+#   这个名字很重要，是注册到注册中心必须用到的，也是服务发现时用到的名字。并且必须要对外显露统一的服务实例名称，不能更改。
+    name: microservice-sidecar
+
+eureka:
+  # 客户端注册进 eureka 服务列表内
+  client:
+    service-url:
+      # 集群版，同时有多个注册中心时
+      defaultZone: http://admin:admin@eureka7001:7001/eureka/,http://eureka7002:7002/eureka/,http://eureka7003:7003/eureka/
+  instance:
+    # 自定义在注册中心页面显示的微服务的名称
+    instance-id: microservice-sidecar
+    # 设置显示微服务名称链接的访问路径 IP 地址
+    prefer-ip-address: true
+
+sidecar:
+
+  # 指定非 JVM 应用程序侦听的端口（当访问本服务时，会同时调用指定端口的路径）
+  port: 8000
+  health-uri: http://localhost:8000/health.json
+  # 当在使用 HTTPs 时接受所有证书，以启用健康检查
+  accept-all-ssl-certificates: true
+
+

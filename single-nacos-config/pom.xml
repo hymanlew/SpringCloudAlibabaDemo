@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>com.hyman</groupId>
+		<artifactId>SpringCloudAlibabaDemo</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+
+	<groupId>com.hyman</groupId>
+	<artifactId>single-nacos-config</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>single-nacos-config</name>
+	<description>服务注册中心</description>
+
+	<dependencies>
+		<!-- 单机应用注册中心的配置 -->
+		<dependency>
+			<groupId>com.alibaba.boot</groupId>
+			<artifactId>nacos-discovery-spring-boot-starter</artifactId>
+			<version>0.2.4</version>
+		</dependency>
+		<!-- 单机应用配置中心的配置 -->
+		<dependency>
+			<groupId>com.alibaba.boot</groupId>
+			<artifactId>nacos-config-spring-boot-starter</artifactId>
+			<version>0.2.4</version>
+		</dependency>
+		<!-- 单机应用熔断限流的配置 -->
+		<dependency>
+			<groupId>com.alibaba.csp</groupId>
+			<artifactId>sentinel-core</artifactId>
+			<version>1.7.1</version>
+		</dependency>
+		<!-- 多应用分布式事务的配置（每个单机应用都进行引入即可）-->
+		<dependency>
+			<groupId>io.seata</groupId>
+			<artifactId>seata-spring-boot-starter</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+
+		<!-- -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-gateway</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis-reactive</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+	</dependencies>
+
+	<!--
+	下面这个插件是用来运行 Springboot的，通常有两种方式可以运行 SpringBoot：
+	一种是通过直接运行main方法。
+	另外一种是通过使用下面的插件运行。
+
+	两种方式是有差别的，一旦项目中需要访问资源的时候就需要通过插件运行，否则无法访问到资源。
+	即这个插件可以把项目打包成可执行的 jar 包。
+	-->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

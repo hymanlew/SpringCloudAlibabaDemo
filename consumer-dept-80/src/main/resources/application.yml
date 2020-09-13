@@ -1,0 +1,23 @@
+server:
+  port: 80
+
+spring:
+  application:
+#   这个名字很重要，是注册到注册中心必须用到的，也是服务发现时用到的名字
+    name: microservice-consumer-dept
+
+# Spring Cloud 将其规范化的定义都抽象到了 SpringCloud-Common 包中，即是统一的标准化操作流程（定义了接口），如服务注册流程，发
+# 现流程。其实现及自动装配信息，都包含在了 SpringCloud-Common 包下 META-INF/spring.factories 文件中。
+# 而 dubbo 集成 nacos 时，服务注册依托的是 Dubbo 中的自动装配机制。是在 spring-cloud-alibaba-dubbo 下 META-INF/spring.factories
+# 文件中。所以不需要单独创建配置一个 Nacos 模块项目。
+cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+dubbo:
+  cloud:
+    subscribed-services: microservice-provider-dept
+  scan:
+    base-packages: com.hyman.consumerdept80
+

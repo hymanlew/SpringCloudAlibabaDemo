@@ -1,0 +1,11 @@
+
+spring:
+  application:
+    name: microservice-config-server
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: hyman
+    password: hyman
+

@@ -1,0 +1,49 @@
+server:
+  port: 3344
+
+spring:
+  application:
+#   这个名字很重要，是注册到注册中心必须用到的，也是服务发现时用到的名字。并且必须要对外显露统一的服务实例名称，不能更改。
+    name: microservice-config-server
+
+#  但是这种使用方式不太清晰，还不如使用 https://github.com/hymanlew/{application} 这种方式去配置。
+#  cloud:
+#    config:
+#      server:
+#        git:
+#          uri: https://github.com/hymanlew/SpringCloudAlibabaDemo.git
+#          repos:
+#            simple: https://github.com/hymanlew/cloud-config-simple
+#            special:
+##             是否服务启动时就加载
+#              cloneOnStart: true
+#              pattern: config-special*/dev*,*config-special*/test*
+#              uri: https://github.com/hymanlew/cloud-config-special
+#            local:
+#              pattern: local*
+#              uri: file:/home/cloudconfig/config-repo
+
+# 访问时，使用以下方式（application=application name，label=git batch name(默认是 master)，profile=各个环境上的配置）：
+# /{application}/{profile}[/{label}]
+# /{application}-{profile}.yml
+# /{label}/{application}-{profile}.yml
+# /{application}-{profile}.properties
+# /{label}/{application}-{profile}.properties
+
+# 当访问 localhost:3344/microservice-config-server-default.yml 时，会定位到 SpringCloudAlibabaDemo.git 仓库中的 default 配置文件。
+# 而访问 cloud-config-simple.yml 时，会定位到 simple。访问 config-special-dev.yml 时，会走匹配模式去定位到 special 的配置文件。
+# 1，首先它会先搜索配置服务器中有没有被访问的同名的文件，有则就直接读取该文件的数据。
+# 2，如果没有，就会到公共的配置仓库中去读取数据（即 SpringCloudAlibabaDemo.git 的 application.yml/properties 文件）。
+# 3，如果仍然没有找到，则会抛异常。
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/hymanlew/SpringCloudAlibabaDemo.git
+#         指定仓库下面的某些配置文件的路径，并且每个路径下都能个性化的配置文件
+#         searchPaths: demo-dev,demo-test
+#         动态的去匹配仓库中的目录文件夹
+          searchPaths: '{application}'
+#         是否服务启动时就加载，作用于全局
+          cloneOnStart: true

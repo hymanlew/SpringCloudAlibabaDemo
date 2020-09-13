@@ -1,0 +1,12 @@
+
+spring:
+  application:
+    name: microservice-config-server
+
+  #设置 configServer 的登录密码:
+  security:
+    user:
+      name: admin  # 用户名
+      password: admin   # 用户密码
+
+
