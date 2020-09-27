@@ -4,7 +4,12 @@ import com.alibaba.nacos.api.annotation.NacosInjected;
 import com.alibaba.nacos.api.exception.NacosException;
 import com.alibaba.nacos.api.naming.NamingService;
 import com.alibaba.nacos.api.naming.pojo.Instance;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -19,6 +24,10 @@ public class DiscoveryController {
 
     @NacosInjected
     private NamingService namingService;
+    @Autowired
+    private DiscoveryClient discoveryClient;
+    @Autowired
+    private RestTemplate restTemplate;
 
     /**
      * 根据服务名称，获得注册到 nacos 上的服务地址
@@ -28,4 +37,23 @@ public class DiscoveryController {
       return namingService.getAllInstances(serviceName);
     }
 
+    /**
+     * 根据服务名称，获得注册到 nacos 上的服务地址
+     */
+    @GetMapping("/getDiscovery")
+    public Object getDiscovery(@RequestParam String serviceName) throws NacosException {
+
+        List<ServiceInstance> instances = discoveryClient.getInstances(serviceName);
+        if(null == instances || instances.isEmpty()){
+            return "用户微服务没有对应的实例可用";
+        }
+
+        String targetUri = instances.get(0).getUri().toString();
+        ResponseEntity<Object> responseEntity = restTemplate.getForEntity(targetUri + "/selectById", Object.class);
+        Object target = responseEntity.getBody();
+        if(null == target){
+            return "没有对应的数据";
+        }
+        return target;
+    }
 }

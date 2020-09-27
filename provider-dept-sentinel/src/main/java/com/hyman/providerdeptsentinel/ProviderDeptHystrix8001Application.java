@@ -1,11 +1,9 @@
-package com.hyman.providerdepthystrix8001;
+package com.hyman.providerdeptsentinel;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 
 /**
  * 在分布式系统中可能会面临的问题：
@@ -33,15 +31,6 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
  * 断路器模式就像是那些容易导致错误的操作的一种代理，它能够记录最近调用发生错误的次数，然后决定使用允许操作继续，或者立即返回错误。
  *
  *
- * Hystrix 断路器：
- * 它就是一个用于处理分布式系统的延迟和容错的开源库。在分布式系统中许多依赖不可避免的会调用失败，比如超时，异常等。Hystrix 能够
- * 保证在一个依赖出问题时，不会导致整体的服务失败，避免级联故障，以提高分布式系统的弹性。
- * 断路器本身是一种开关装置，当某个服务单元发生故障后，通过断路器的故障监控（如果保险丝）向调用方返回一个符合预期的可处理的备选
- * 响应（fallback），而不是长时间的等待或抛出调用方无法处理的异常，这样就保证了服务调用方的线程不会被长时间，不必要地占用，从而
- * 避免了故障在分布式系统中的蔓延及至雪崩。
- *
- * Hystrix 具体的功能有：接近实时的监控（监控），服务熔断（断路器的状态），服务降级，服务限流（分流），自我修复（断路状态的切换）等等。
- *
  * 服务熔断：
  * 熔断机制是应对雪崩效应的一种微服务链路保护机制。当扇出链路的某个微服务不可用或响应时间太长时，会进行服务的降级，进而熔断该节
  * 点微服务的调用，快速返回‘错误’的响应信息，即返回一个符合预期的可处理的备选响应（fallback）。当检测到该节点微服务调用响应正常
@@ -57,13 +46,7 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
  *
  * 有了熔断机制而后又有服务降级，是因为：熔断机制是直接作用在具体的方法了，而这就造成了强耦合。也违反了 IOC,AOP 面向切面的思想，
  * 所以就使用熔断加 fallbackFactory 接口的方式实现解耦合，达到了服务降级的目的。
- *
- * 可以使用 /health 和 /hystrix.stream 路径来检查 hystrix 的启动状态和相关信息（依赖于 actuator 包）。
- * 其中 /hystrix.stream 访问时，如果出现 404，则需要检查是否配置了 home-page-url-path 属性。如果有则要配置 instanceUrlSuffix。
  */
-
-@EnableHystrix			// 启用熔断机制功能
-@EnableEurekaClient
 @EnableDiscoveryClient
 @EnableCircuitBreaker	// 开启对熔断机制功能的支持
 @SpringBootApplication
