@@ -2,20 +2,21 @@
 server:
   port: 7001
 
-
-#设置eurekaServer的登录密码:
-  security:
-    user:
-      name: admin  # 用户名
-      password: admin   # 用户密码
-  redis:
-    lettuce:
-      shutdown-timeout:
-
+spring:
 # nacos 集群地址
   cloud:
     nacos:
       server-addr: 127.0.0.1:8848
+
+# 基于 sentinel dashboard 实现流控（值为 dashboard 的服务器地址），可实现流控数据的监控和流控规则的分发
+# 它与手动配置流控规则，两者是可以兼容存在的，以 dashboard 动态修改规则为优先规则
+    sentinel:
+      transport:
+        dashboard: 192.168.218.128：7777
+
+# 当触发限流后，直接跳转到一个降级页面（默认是直接返回）。也不使用自定义的限流异常（UrlBlockConfig）
+      servlet:
+        block-page: /error.jsp
 
 # nacos 单机服务器地址
 #nacos:

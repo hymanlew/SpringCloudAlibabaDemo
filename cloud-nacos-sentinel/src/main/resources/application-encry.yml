@@ -7,8 +7,8 @@ server:
 # 目录中，即可。
 
 # 使用对称加密，配置以下代码即可：
-encrypt:
-  key: hymanencry
+#encrypt:
+#  key: hymanencry
 
 # 加密时，使用 POST 方式访问本服务 IP:PORT/encrypt -d 明文（例如 microservice-config-server），则它会输出密文（即使用 hymanencry
 # 作为密钥对明文进行对称式加密）。解密时，访问本服务 IP:PORT/decrypt -d 密文，则它就会输出对应的明文（microservice-config-server）。

@@ -17,6 +17,14 @@
 	</parent>
 
 	<dependencies>
+
+		<!-- sentinel 单独整合到 springcloud -->
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+			<version>2.1.1.RELEASE</version>
+		</dependency>
+
 		<!-- sentinel 集成 nacos 的 jar -->
 		<dependency>
 			<groupId>com.alibaba.csp</groupId>
@@ -30,7 +38,8 @@
 			<artifactId>sentinel-apache-dubbo-adapter</artifactId>
 			<version>1.7.1</version>
 		</dependency>
-		<!-- sentinel dashboard 集成 dubbo 的 jar -->
+
+		<!-- sentinel dashboard 集成 dubbo 的 jar，可对服务提供方和调用消费方都进行流控 -->
 		<dependency>
 			<groupId>com.alibaba.csp</groupId>
 			<artifactId>sentinel-transport-simple-http</artifactId>
@@ -55,6 +64,10 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<!-- optional=true，依赖不会往下传递，如果有项目依赖本项目，并且想要使用devtools，需要重新引入 -->
 			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 	</dependencies>
 

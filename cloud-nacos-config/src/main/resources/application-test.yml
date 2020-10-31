@@ -2,17 +2,8 @@
 server:
   port: 7001
 
-
-#设置eurekaServer的登录密码:
-  security:
-    user:
-      name: admin  # 用户名
-      password: admin   # 用户密码
-  redis:
-    lettuce:
-      shutdown-timeout:
-
 # nacos 集群地址
+spring:
   cloud:
     nacos:
       server-addr: 127.0.0.1:8848

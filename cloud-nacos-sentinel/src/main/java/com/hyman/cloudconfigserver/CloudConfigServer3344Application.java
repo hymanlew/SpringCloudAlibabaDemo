@@ -2,7 +2,6 @@ package com.hyman.cloudconfigserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.config.server.EnableConfigServer;
 
 /**
  * 分布式系统面临的配置问题：
@@ -32,7 +31,6 @@ import org.springframework.cloud.config.server.EnableConfigServer;
  * 阿里的 diamond，携程的 apollo。
  */
 @SpringBootApplication
-@EnableConfigServer
 public class CloudConfigServer3344Application {
 
 	public static void main(String[] args) {
