@@ -21,6 +21,8 @@ import java.util.List;
  * 以上两者是可以兼容存在的，以 dashboard 动态修改规则为优先规则。
  * 但要注意，dashboard 动态修改的规则都是保存在内存中的，一旦应用重启，则这些规则都会被清除。因此 sentinel 提供了动态数据源支持。
  * 目前 sentinel 支持 Consul，zookeeper，redis，nacos，apollo，etcd 等数据源的扩展。参照 cloud-nacos-sentinel 项目。
+ *
+ * 并且在 spring-cloud-sentinel 中，流控规则的持久化机制是自动实现的，不需要手动配置。
  */
 public class FlowRuleInit implements InitFunc {
 

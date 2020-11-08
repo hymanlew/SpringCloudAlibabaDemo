@@ -25,6 +25,9 @@
 			<version>2.1.1.RELEASE</version>
 		</dependency>
 
+		<!--
+		在 spring-cloud-sentinel 中，流控规则的持久化机制是自动实现的，不需要手动配置。但在 sentinel-apache-dubbo-adapter 包
+		中并没有实现该功能。所以需要引入以下这个包，以实现规则的持久化。 -->
 		<!-- sentinel 集成 nacos 的 jar -->
 		<dependency>
 			<groupId>com.alibaba.csp</groupId>
@@ -32,19 +35,36 @@
 			<version>1.7.1</version>
 		</dependency>
 
+		<!--
+		spring-cloud-starter-alibaba-sentinel 目前无法支持 Dubbo 服务的限流，所以针对 Dubbo 服务限流只能使用 sentinel-apache-dubbo-adapter，
+		而此配件也并没有接入 Sentinel Dashboard，需要再引入 sentinel-transport-simple-http 依赖。
+
+		 添加启动参数：
+		 -Djava.net.preferIPv4Stack=true		（表示只支持 IPV4）
+		 -Dcsp.sentinel.api.port=8720			（客户端端口，用于上报应用的信息）
+		 -Dcsp.sentinel.dashboard.server=192.168.216.128.7777
+		 -Dproject.name=spring-cloud.sentinel-dubbo.provider
+		 -->
+
 		<!-- sentinel 集成 dubbo 的 jar -->
 		<dependency>
 			<groupId>com.alibaba.csp</groupId>
 			<artifactId>sentinel-apache-dubbo-adapter</artifactId>
 			<version>1.7.1</version>
 		</dependency>
+		<dependency>
+			<groupId>com.alibaba.cloud</groupId>
+			<artifactId>spring-cloud-starter-dubbo</artifactId>
+			<version>2.1.1.RELEASE</version>
+		</dependency>
 
-		<!-- sentinel dashboard 集成 dubbo 的 jar，可对服务提供方和调用消费方都进行流控 -->
+		<!-- sentinel dashboard 集成 dubbo 的 jar，可对服务提供方和调用消费方都进行流控，并上报相关信息到控制台 -->
 		<dependency>
 			<groupId>com.alibaba.csp</groupId>
 			<artifactId>sentinel-transport-simple-http</artifactId>
 			<version>1.7.1</version>
 		</dependency>
+
 		<!-- sentinel 热点参数限流 -->
 		<dependency>
 			<groupId>com.alibaba.csp</groupId>
