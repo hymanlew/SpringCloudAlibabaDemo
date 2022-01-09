@@ -34,7 +34,8 @@ spring:
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
       
-# 注册中心
+
+# 注册中心集群地址
   cloud:
     nacos:
       discovery:

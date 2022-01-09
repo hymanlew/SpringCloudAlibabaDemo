@@ -9,11 +9,9 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>com.hyman</groupId>
 	<artifactId>single-nacos-config</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>single-nacos-config</name>
-	<description>服务注册中心</description>
+	<description>单机服务注册中心</description>
 
 	<dependencies>
 		<!-- 单机应用注册中心的配置 -->

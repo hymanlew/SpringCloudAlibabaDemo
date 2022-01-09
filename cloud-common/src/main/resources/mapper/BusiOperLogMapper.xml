@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyman.common.mapper.BusiOperLogMapper">
+    <resultMap id="BaseResultMap" type="com.hyman.common.model.dao.log.BusiOperLogDAO">
+        <result column="business_id" jdbcType="VARCHAR" property="businessId"/>
+        <result column="module" jdbcType="VARCHAR" property="module"/>
+        <result column="oper_type" jdbcType="VARCHAR" property="operType"/>
+        <result column="oper_desc" jdbcType="VARCHAR" property="operDesc"/>
+        <result column="after_state" jdbcType="VARCHAR" property="afterState"/>
+        <result column="remarks" jdbcType="VARCHAR" property="remarks"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, business_id, `module`, oper_type, oper_desc, after_state, remarks
+    </sql>
+
+    <insert id="batchInsertSelective">
+        insert into busi_oper_log (business_id,
+        module,
+        oper_type,
+        oper_desc,
+        after_state,
+        result,
+        remarks,
+        create_id,
+        create_date)
+        values
+        <foreach item="item" collection="dtos" separator=",">
+            (#{item.businessId,jdbcType=VARCHAR},#{item.module,jdbcType=VARCHAR} ,#{item.operType,jdbcType=VARCHAR}
+            ,#{item.operDesc,jdbcType=VARCHAR} ,#{item.afterState,jdbcType=VARCHAR} ,#{item.result,jdbcType=VARCHAR}
+            ,#{item.remarks,jdbcType=VARCHAR} ,#{item.createId,jdbcType=BIGINT} ,#{item.createDate,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+
+    <select id="selectLogByBusinessId" resultType="java.lang.Integer">
+        select
+        count(1)
+        from
+        busi_oper_log
+        where
+        business_id = #{businessId,jdbcType=VARCHAR}
+    </select>
+</mapper>

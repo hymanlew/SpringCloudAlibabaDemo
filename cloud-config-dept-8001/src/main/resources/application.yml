@@ -1,5 +1,0 @@
-
-spring:
-  application:
-#   这个名字很重要，是注册到注册中心必须用到的，也是服务发现时用到的名字
-    name: microservice-config-dept-client

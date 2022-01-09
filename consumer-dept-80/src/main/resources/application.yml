@@ -10,10 +10,10 @@ spring:
 # 现流程。其实现及自动装配信息，都包含在了 SpringCloud-Common 包下 META-INF/spring.factories 文件中。
 # 而 dubbo 集成 nacos 时，服务注册依托的是 Dubbo 中的自动装配机制。是在 spring-cloud-alibaba-dubbo 下 META-INF/spring.factories
 # 文件中。所以不需要单独创建配置一个 Nacos 模块项目。
-cloud:
-    nacos:
-      discovery:
-        server-addr: 127.0.0.1:8848
+  cloud:
+      nacos:
+        discovery:
+          server-addr: 127.0.0.1:8848
 
 dubbo:
   cloud:
@@ -21,3 +21,10 @@ dubbo:
   scan:
     base-packages: com.hyman.consumerdept80
 
+
+# 启用熔断机制，设置响应超时时间（Hystrix 默认的超时时间是 1秒），并自动调用 api 中的 fallback 进行信息返回.
+feign:
+  hystrix:
+    enabled: true
+  httpclient:
+    connection-timeout: 3000

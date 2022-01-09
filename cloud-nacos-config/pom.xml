@@ -9,11 +9,9 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>com.hyman</groupId>
 	<artifactId>cloud-nacos-config</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>cloud-nacos-config</name>
-	<description>服务注册中心</description>
+	<description>集群服务注册配置中心</description>
 
 	<dependencies>
 		<!-- nacos-config 单独整合到 springcloud -->

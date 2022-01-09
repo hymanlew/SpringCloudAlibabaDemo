@@ -2,6 +2,13 @@
 server:
   port: 7001
 
+# 暴露所有的请求，以用于监控
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
 logging:
   level:
     root: info

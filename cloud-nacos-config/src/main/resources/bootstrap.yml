@@ -4,9 +4,6 @@ spring:
   application:
     name: config-center-7001
 
-  profiles:
-    active: dev
-
 # SpringCloud-Alibaba Nacos Config 从 Nacos Config Server 中加载配置时，会匹配 dataId（dataId 表示 Nacos 中某个配置集的 id，
 # 通常用于组织划分系统的配置集）。Nacos Config 不仅加载了默认的以下第一条的基础配置，还会加载 dataId 为 ${spring.application.name}
 # -${profile}.${file-extension:properties} 的基础配置。这就为不同环境的切换提供了很好的支持。
@@ -68,3 +65,6 @@ spring:
 # Nacos Config 针对配置管理提供了 4 种操作 CRUD，其中 API 的方式为：
 # 获取（get）/nacos/v1/cs/configs，监听（post）/nacos/v1/cs/configs/listener，发布（post）/nacos/v1/cs/configs，删除（delete）/nacos/v1/cs/configs。
 
+
+  profiles:
+    active: dev
