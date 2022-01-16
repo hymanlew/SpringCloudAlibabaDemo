@@ -35,7 +35,7 @@ spring:
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
-  # nacos 集群地址，nacos 默认端口是 8848
+  # nacos 集群地址，nacos 默认端口是 8848，单独从官网下载解压并运行
   cloud:
     nacos:
       discovery:

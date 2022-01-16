@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.List;
 
 /**
- * 单机服务配置：
+ * 单机服务配置（Nacos 服务是单独从官网下载解压并运行的）：
  * 注册服务时，使用 ip:port（在配置文件中配置）/nacos/v1/ns/instance?serviceName=abc&ip=127.0.0.1&port=7001,
  * 获取服务地址时，则就可以使用以下的路径进行访问。
  */

@@ -59,6 +59,7 @@
     <modules>
         <module>cloud-api</module>
         <module>cloud-common</module>
+        <module>cloud-nacos-config</module>
         <module>cloud-provider-8001</module>
         <module>cloud-provider-8002</module>
         <module>consumer-dept-80</module>

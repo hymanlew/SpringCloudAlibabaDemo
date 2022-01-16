@@ -1,6 +1,8 @@
 
-server:
-  port: 7001
+# 注意：当 active 为空时，则对应的连接符 - 也将不存在，则 dataId 的格式就变成 ${prefix}.${file-extension}。
+spring:
+  profiles:
+    active: dev
 
 # 暴露所有的请求，以用于监控
 management:
