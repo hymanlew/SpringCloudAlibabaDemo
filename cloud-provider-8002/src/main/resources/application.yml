@@ -37,11 +37,12 @@ spring:
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
-  # nacos 集群地址，nacos 默认端口是 8848，单独从官网下载解压并运行
+  # nacos 集群地址
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
+        # nginx 负载服务器 ip:统一访问端口（配置参考 springcloud md 文档）
+        server-addr: 192.168.1.1:3333
 
 # 自定义显示项目的描述信息，需要注意，要在父工程中进行资源访问的配置（resources 标签加 maven-resources-plugin 插件）
 info:

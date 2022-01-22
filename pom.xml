@@ -64,6 +64,7 @@
         <module>cloud-provider-8002</module>
         <module>consumer-dept-80</module>
         <module>cloud-gateway-9527</module>
+        <module>cloud-nacos-sentinel</module>
     </modules>
 
     <!-- 指定 maven 仓库，是对 setting 文件的补充 -->

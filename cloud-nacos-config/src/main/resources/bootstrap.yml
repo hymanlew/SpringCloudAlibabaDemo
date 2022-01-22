@@ -19,10 +19,14 @@ spring:
     nacos:
       discovery:
         # 注册进注册中心，如果配置的是域名，也要加上端口，即使监听的是 80 端口，也要写上
-        server-addr: 127.0.0.1:8848
+        #server-addr: 127.0.0.1:8848
+        # nginx 负载服务器 ip:统一访问端口（配置参考 springcloud md 文档）
+        server-addr: 192.168.1.1:3333
       config:
         # 如果配置的是域名，也要加上端口，即使监听的是 80 端口，也要写上
-        server-addr: 127.0.0.1:8848
+        #server-addr: 127.0.0.1:8848
+        # nginx 负载服务器 ip:统一访问端口（配置参考 springcloud md 文档）
+        server-addr: 192.168.1.1:3333
 
         # prefix 属性表示 Nacos 配置中心上的 dataId 前缀。
         # 1，默认情况下，会去 Nacos 服务器上加载 dataId 以 ${spring.application.name}.${file-extension:properties} 为前缀的基础配置。

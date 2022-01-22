@@ -6,7 +6,8 @@ spring:
 # nacos 集群地址
   cloud:
     nacos:
-      server-addr: 127.0.0.1:8848
+      # nginx 负载服务器 ip:统一访问端口（配置参考 springcloud md 文档）
+      server-addr: 192.168.1.1:3333
 
 # 基于 sentinel dashboard 实现流控（值为 dashboard 的服务器地址），可实现流控数据的监控和流控规则的分发
 # 它与手动配置流控规则，两者是可以兼容存在的，以 dashboard 动态修改规则为优先规则

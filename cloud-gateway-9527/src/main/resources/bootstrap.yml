@@ -51,7 +51,6 @@ spring:
             # 在匹配的请求头中加入一个请求头，即 request-id:hyman
             - AddRequestParameter=request-id,hyman
 
-
 #  cloud:
 #    gateway:
 #      routes:

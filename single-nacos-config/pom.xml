@@ -14,19 +14,19 @@
 	<description>单机服务注册中心</description>
 
 	<dependencies>
-		<!-- 单机应用注册中心的配置 -->
+		<!-- 单机单独应用注册中心的配置 -->
 		<dependency>
 			<groupId>com.alibaba.boot</groupId>
 			<artifactId>nacos-discovery-spring-boot-starter</artifactId>
 			<version>0.2.4</version>
 		</dependency>
-		<!-- 单机应用配置中心的配置 -->
+		<!-- 单机单独应用配置中心的配置 -->
 		<dependency>
 			<groupId>com.alibaba.boot</groupId>
 			<artifactId>nacos-config-spring-boot-starter</artifactId>
 			<version>0.2.4</version>
 		</dependency>
-		<!-- 单机应用熔断限流的配置 -->
+		<!-- 单机单独应用熔断限流的配置 -->
 		<dependency>
 			<groupId>com.alibaba.csp</groupId>
 			<artifactId>sentinel-core</artifactId>
@@ -39,11 +39,6 @@
 			<version>1.0.0</version>
 		</dependency>
 
-		<!-- -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-gateway</artifactId>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis-reactive</artifactId>
@@ -53,9 +48,11 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 
+		<!-- 动态编译代码 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
+			<!-- optional=true，依赖不会往下传递，如果有项目依赖本项目，并且想要使用devtools，需要重新引入 -->
 			<optional>true</optional>
 		</dependency>
 		<dependency>

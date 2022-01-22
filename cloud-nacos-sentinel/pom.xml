@@ -3,9 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.hyman</groupId>
 	<artifactId>cloud-nacos-sentinel</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>cloud-nacos-sentinel</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -17,6 +15,11 @@
 	</parent>
 
 	<dependencies>
+        <dependency>
+            <groupId>com.hyman</groupId>
+            <artifactId>cloud-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
 		<!-- sentinel 单独整合到 springcloud -->
 		<dependency>
@@ -28,7 +31,7 @@
 		<!--
 		在 spring-cloud-sentinel 中，流控规则的持久化机制是自动实现的，不需要手动配置。但在 sentinel-apache-dubbo-adapter 包
 		中并没有实现该功能。所以需要引入以下这个包，以实现规则的持久化。 -->
-		<!-- sentinel 集成 nacos 的 jar -->
+		<!-- sentinel 集成 nacos 的 jar，用于实现规则的持久化 -->
 		<dependency>
 			<groupId>com.alibaba.csp</groupId>
 			<artifactId>sentinel-datasource-nacos</artifactId>
@@ -77,6 +80,10 @@
 			<groupId>com.alibaba.csp</groupId>
 			<artifactId>sentinel-spring-cloud-gateway-adapter</artifactId>
 			<version>1.7.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
 		</dependency>
 
 		<dependency>

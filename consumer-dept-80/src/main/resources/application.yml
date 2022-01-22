@@ -13,7 +13,8 @@ spring:
   cloud:
       nacos:
         discovery:
-          server-addr: 127.0.0.1:8848
+        # nginx 负载服务器 ip:统一访问端口（配置参考 springcloud md 文档）
+        server-addr: 192.168.1.1:3333
 
 dubbo:
   cloud:

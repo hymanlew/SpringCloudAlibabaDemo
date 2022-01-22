@@ -3,22 +3,9 @@ package com.hyman.consumerdept80.controller;
 import com.hyman.cloudapi.entity.Department;
 import com.hyman.cloudapi.service.DeptService;
 import com.netflix.ribbon.proxy.annotation.Hystrix;
-import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
 
-import com.hyman.cloudapi.entity.Department;
-import com.hyman.cloudapi.service.DeptClientService;
-import com.hyman.cloudapi.service.FeignClientServiceDemo;
-import com.netflix.ribbon.proxy.annotation.Hystrix;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.openfeign.support.FallbackCommand;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.RestTemplate;
-
-
-import java.util.ArrayList;
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -28,10 +15,8 @@ import java.util.List;
 @RequestMapping("/deptConsumer")
 public class DeptController_consumer {
 
-    @Autowired
-    private DeptClientService deptClientService;
-    @Autowired
-    private FeignClientServiceDemo feignClientServiceDemo;
+    @Resource
+    private DeptService deptService;
 
     /**
      * 当 FeignClient 中的路径使用 @RequestMapping 时，则 controller 中访问的路径不能与前者完全相同。因为这样，当请求头为
@@ -43,27 +28,23 @@ public class DeptController_consumer {
     @GetMapping("/getById/{id}")
     @Hystrix
     public Department findById(@PathVariable("id") Integer id){
-        return deptClientService.findById(id);
+        return deptService.findById(id);
     }
 
     @PostMapping("/findAll")
     public List<Department> findall(){
-        return deptClientService.findall();
+        return deptService.findAll();
     }
 
     @GetMapping("/save")
     public boolean save(@RequestBody Department department){
-        return deptClientService.save(department);
+        return deptService.addDept(department);
     }
 
     // 消费者调用服务发现
     @RequestMapping("/discovery")
     public Object discovery(){
-        return  deptClientService.discovery();
+        return  deptService.discovery();
     }
 
-    @GetMapping("/getService/{id}")
-    public Object getService(@PathVariable("id") Integer id) {
-        return feignClientServiceDemo.getService(id);
-    }
 }
