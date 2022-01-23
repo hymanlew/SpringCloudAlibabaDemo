@@ -9,9 +9,9 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>single-nacos-config</artifactId>
+	<artifactId>single-nacos-sentinel</artifactId>
 	<name>single-nacos-config</name>
-	<description>单机服务注册中心</description>
+	<description>单机服务注册流控中心</description>
 
 	<dependencies>
 		<!-- 单机单独应用注册中心的配置 -->
@@ -26,12 +26,33 @@
 			<artifactId>nacos-config-spring-boot-starter</artifactId>
 			<version>0.2.4</version>
 		</dependency>
+
 		<!-- 单机单独应用熔断限流的配置 -->
 		<dependency>
 			<groupId>com.alibaba.csp</groupId>
 			<artifactId>sentinel-core</artifactId>
 			<version>1.7.1</version>
 		</dependency>
+		<!-- 热点参数限流相关依赖 -->
+		<dependency>
+			<groupId>com.alibaba.csp</groupId>
+			<artifactId>sentinel-parameter-flow-control</artifactId>
+			<version>1.7.1</version>
+		</dependency>
+		<!-- 客户端需要引入 Transport 模块来与 Sentinel 控制台进行通信 -->
+		<!-- sentinel dashboard 集成 dubbo 的 jar，可对服务提供方和调用消费方都进行流控，并上报相关信息到控制台 -->
+		<dependency>
+			<groupId>com.alibaba.csp</groupId>
+			<artifactId>sentinel-transport-simple-http</artifactId>
+			<version>1.7.1</version>
+		</dependency>
+		<!-- 重要的依赖，不可缺少 -->
+		<dependency>
+			<groupId>com.alibaba.csp</groupId>
+			<artifactId>sentinel-web-servlet</artifactId>
+			<version>1.8.1</version>
+		</dependency>
+
 		<!-- 多应用分布式事务的配置（每个单机应用都进行引入即可）-->
 		<dependency>
 			<groupId>io.seata</groupId>
@@ -58,6 +79,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-commons</artifactId>
 		</dependency>
 	</dependencies>
 

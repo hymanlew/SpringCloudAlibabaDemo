@@ -61,13 +61,6 @@
 			<version>2.1.1.RELEASE</version>
 		</dependency>
 
-		<!-- sentinel dashboard 集成 dubbo 的 jar，可对服务提供方和调用消费方都进行流控，并上报相关信息到控制台 -->
-		<dependency>
-			<groupId>com.alibaba.csp</groupId>
-			<artifactId>sentinel-transport-simple-http</artifactId>
-			<version>1.7.1</version>
-		</dependency>
-
 		<!-- sentinel 热点参数限流 -->
 		<dependency>
 			<groupId>com.alibaba.csp</groupId>

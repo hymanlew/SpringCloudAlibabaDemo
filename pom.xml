@@ -59,12 +59,14 @@
     <modules>
         <module>cloud-api</module>
         <module>cloud-common</module>
-        <module>cloud-nacos-config</module>
         <module>cloud-provider-8001</module>
         <module>cloud-provider-8002</module>
         <module>consumer-dept-80</module>
         <module>cloud-gateway-9527</module>
+        <module>cloud-nacos-config</module>
         <module>cloud-nacos-sentinel</module>
+
+        <module>single-nacos-sentinel</module>
     </modules>
 
     <!-- 指定 maven 仓库，是对 setting 文件的补充 -->

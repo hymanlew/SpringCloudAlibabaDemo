@@ -4,7 +4,7 @@ server:
 spring:
   application:
 #   这个名字很重要，是注册到注册中心必须用到的，也是服务发现时用到的名字。并且必须要对外显露统一的服务实例名称，不能更改。
-    name: cloud-sentinel
+    name: cloud-sentinel-client
   cloud:
     nacos:
       discovery:

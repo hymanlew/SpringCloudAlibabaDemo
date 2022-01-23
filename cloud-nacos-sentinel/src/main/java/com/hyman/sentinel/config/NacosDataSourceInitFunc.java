@@ -1,4 +1,4 @@
-package com.hyman.cloudconfigserver.config;
+package com.hyman.sentinel.config;
 
 import com.alibaba.csp.sentinel.datasource.ReadableDataSource;
 import com.alibaba.csp.sentinel.datasource.nacos.NacosDataSource;
@@ -21,7 +21,7 @@ import java.util.List;
  * 发事件机制通知 dubbo 应用重新加载流控规则。
  *
  * 另一种是 sentinel 集成 dashboard 实现动态流控规则，并持久化到 Nacos 中。可参见
- * @see com.hyman.cloudconfigserver.controller.DynamicRuleController
+ * @see com.hyman.sentinel.controller.DynamicRuleController
  */
 public class NacosDataSourceInitFunc implements InitFunc {
 

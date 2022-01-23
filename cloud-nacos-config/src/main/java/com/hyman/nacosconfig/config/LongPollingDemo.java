@@ -1,4 +1,4 @@
-package com.hyman.nacosconfig;
+package com.hyman.nacosconfig.config;
 
 import com.google.common.util.concurrent.AbstractScheduledService;
 

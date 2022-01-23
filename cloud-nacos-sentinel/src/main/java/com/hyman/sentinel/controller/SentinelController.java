@@ -1,4 +1,4 @@
-package com.hyman.nacosconfig.controller;
+package com.hyman.sentinel.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import org.springframework.web.bind.annotation.GetMapping;

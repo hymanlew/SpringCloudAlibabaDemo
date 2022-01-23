@@ -4,7 +4,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
-
  服务发现组件的功能（包含服务注册，发现，注册中心）：
  服务注册表，是一个记录当前可用服务实例的网络信息的数据库，是服务发现机制的核心。是包含服务实例的网络地址的数据库。服务注册表需要高可用而且随时更新。
  服务注册和注销，该组件提供了查询 API 和管理 API，前者可以获取可用的服务实例，后者实现注册和注销（即服务注册注销）。服务实例必须在注册表中注册和注销。
@@ -124,10 +123,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 2，基于 DatagramSocket 的 UDP 协议，实现服务端的主动推送。
  */
 @SpringBootApplication
-public class CloudNacos7001Application {
+public class NacosApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CloudNacos7001Application.class, args);
+		SpringApplication.run(NacosApplication.class, args);
 	}
 
 }

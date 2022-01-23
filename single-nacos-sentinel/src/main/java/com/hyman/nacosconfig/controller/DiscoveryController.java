@@ -1,4 +1,4 @@
-package com.hyman.nacosconfig;
+package com.hyman.nacosconfig.controller;
 
 import com.alibaba.nacos.api.annotation.NacosInjected;
 import com.alibaba.nacos.api.exception.NacosException;

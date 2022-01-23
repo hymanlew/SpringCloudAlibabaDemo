@@ -1,7 +1,7 @@
 
 spring:
   application:
-    name: microservice-config-server
+    name: cloud-sentinel-client
 
   rabbitmq:
     host: localhost

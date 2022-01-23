@@ -1,4 +1,4 @@
-package com.hyman.cloudconfigserver.controller;
+package com.hyman.sentinel.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 即 nacos 还是一个配置中心的角色，所以还是强烈建议不要在 nacos 上做动态的流控规则修改。
  *
  * 还有一种方式是在 Dubbo 服务中，实现动态流控规则的修改，并持久化到 Nacos 中。参见
- * @see com.hyman.cloudconfigserver.config.NacosDataSourceInitFunc
+ * @see com.hyman.sentinel.config.NacosDataSourceInitFunc
  */
 @RestController
 public class DynamicRuleController {

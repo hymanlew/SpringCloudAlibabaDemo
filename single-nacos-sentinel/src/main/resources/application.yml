@@ -1,0 +1,49 @@
+
+server:
+  port: 7001
+
+spring:
+  application:
+    name: single-nacos-sentinel-client
+
+  redis:
+    lettuce:
+      shutdown-timeout:
+
+# 由于是单独引入的 sentinel 作为限流服务（不使用阿里系的其他组件），以下配置是找不到对应的配置的，也就不生效。因此需要指定启动参数：
+# java -Dserver.port=7001 -Dcsp.sentinel.dashboard.server=localhost:8000 -Dproject.name=sentinel-dashboard -jar sentinel-dashboard-1.7.1.jar
+
+#server.port : 服务启动端口
+#csp.sentinel.dashboard.server : 状态上报机器ip:端口
+#project.name : 监控项目名称
+
+#sentinel.transport.dashboard.localhost=8080
+#sentinel.transport.port=8719
+
+
+# nacos 单机服务器注册中心（单独引入 nacos，不使用阿里系的其他组件），及配置中心，单独从官网下载解压并运行
+# 默认端口就是 8848
+nacos:
+  discovery:
+    autoRegister: true
+    server-addr: 127.0.0.1:8848
+  config:
+    server-addr: 127.0.0.1:8848
+
+
+logging:
+  level:
+    root: info
+    org.hibernate: info
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+    org.hibernate.type.descriptor.sql.BasicExtractor: trace
+    com.hyman.cloudeureka7001.FeignController: debug
+#    com.hyman.xxx: OFF
+
+
+# 暴露所有的请求，以用于监控
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

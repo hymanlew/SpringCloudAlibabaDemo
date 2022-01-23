@@ -1,4 +1,4 @@
-package com.hyman.nacosconfig.config;
+package com.hyman.sentinel.config;
 
 import com.alibaba.csp.sentinel.adapter.servlet.callback.UrlBlockHandler;
 import com.alibaba.csp.sentinel.slots.block.BlockException;

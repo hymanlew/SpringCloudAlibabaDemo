@@ -1,4 +1,4 @@
-package com.hyman.nacosconfig;
+package com.hyman.nacosconfig.controller;
 
 import com.alibaba.nacos.api.config.annotation.NacosValue;
 import com.alibaba.nacos.spring.context.annotation.config.NacosPropertySource;

@@ -1,4 +1,4 @@
-package com.hyman.cloudconfigserver.controller;
+package com.hyman.sentinel.controller;
 
 import com.alibaba.csp.sentinel.Entry;
 import com.alibaba.csp.sentinel.EntryType;
@@ -28,7 +28,12 @@ import java.util.List;
  * 间内最常访问的热点数据，滑动窗口机制可以协助统计每个参数的 QPS。热点限流在以下场景中使用较多。
  *
  * 1，服务网关层：例如防止网络爬虫和恶意攻击，常用方法是限制爬虫的  IP 地址，客户端 IP 地址就是一种热点参数。
- * 2，写数据的服务：有写操作的业务系统，存储系统等等。存储系统的底层会加锁写磁盘上的文件，部分存储系统会将某一类数据写入同一个文件。如果底层写同一个文件，会出现抢占锁的情况，导致出现大量超时和失败。此时一般有两种解决办法：修改存储设计，对热点数据参数限流。
+ * 2，写数据的服务：有写操作的业务系统，存储系统等等。存储系统的底层会加锁写磁盘上的文件，部分存储系统会将某一类数据写入同一个文
+ * 件。如果底层写同一个文件，会出现抢占锁的情况，导致出现大量超时和失败。此时一般有两种解决办法：修改存储设计，对热点数据参数限流。
+ *
+ * Sentinel 默认是采用的懒加载机制，即当 Sentinel jar 包和本服务第一次启动后，在 Sentinel dashboard 中会看不到任何东西，只有访
+ * 问之后才会显示。
+ *
  */
 @RestController
 public class ParamRuleController {
@@ -36,9 +41,7 @@ public class ParamRuleController {
     private String resourceName = "sayhello";
 
     @GetMapping("/hello")
-    public String sayhello(
-            @PathParam("id") String id,
-            @PathParam("name") String name){
+    public String sayhello(@PathParam("id") String id, @PathParam("name") String name){
 
         Entry entry = null;
         try {
