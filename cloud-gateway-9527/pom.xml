@@ -51,6 +51,13 @@
 			<version>16.0.2</version>
 			<scope>compile</scope>
 		</dependency>
+
+		<!-- gateway 集成 sentinel -->
+		<dependency>
+			<groupId>com.alibaba.csp</groupId>
+			<artifactId>sentinel-spring-cloud-gateway-adapter</artifactId>
+			<version>1.7.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>

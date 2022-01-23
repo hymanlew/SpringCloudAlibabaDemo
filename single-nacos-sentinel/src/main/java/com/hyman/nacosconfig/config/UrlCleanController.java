@@ -1,4 +1,4 @@
-package com.hyman.sentinel.config;
+package com.hyman.nacosconfig.config;
 
 import com.alibaba.csp.sentinel.adapter.servlet.callback.UrlCleaner;
 import org.apache.commons.lang3.StringUtils;

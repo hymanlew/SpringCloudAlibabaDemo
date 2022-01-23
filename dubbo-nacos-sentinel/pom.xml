@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>cloud-nacos-sentinel</artifactId>
-	<name>cloud-nacos-sentinel</name>
+	<artifactId>dubbo-nacos-sentinel</artifactId>
+	<name>dubbo-nacos-sentinel</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -15,12 +15,6 @@
 	</parent>
 
 	<dependencies>
-        <dependency>
-            <groupId>com.hyman</groupId>
-            <artifactId>cloud-common</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
 		<!-- sentinel 单独整合到 springcloud -->
 		<dependency>
 			<groupId>com.alibaba.cloud</groupId>
@@ -60,7 +54,6 @@
 			<artifactId>spring-cloud-starter-dubbo</artifactId>
 			<version>2.1.1.RELEASE</version>
 		</dependency>
-
 		<!-- sentinel 热点参数限流 -->
 		<dependency>
 			<groupId>com.alibaba.csp</groupId>
@@ -68,12 +61,6 @@
 			<version>1.7.1</version>
 		</dependency>
 
-		<!-- gateway 集成 sentinel -->
-		<dependency>
-			<groupId>com.alibaba.csp</groupId>
-			<artifactId>sentinel-spring-cloud-gateway-adapter</artifactId>
-			<version>1.7.1</version>
-		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-openfeign</artifactId>

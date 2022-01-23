@@ -1,4 +1,4 @@
-package com.hyman.sentinel.controller;
+package com.hyman.nacosconfig.config;
 
 import com.alibaba.csp.sentinel.Entry;
 import com.alibaba.csp.sentinel.EntryType;

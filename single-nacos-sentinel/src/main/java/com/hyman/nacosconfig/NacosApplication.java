@@ -2,6 +2,8 @@ package com.hyman.nacosconfig;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  服务发现组件的功能（包含服务注册，发现，注册中心）：
@@ -122,6 +124,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * 1，客户端调用 /nacos/v1/ns/instance/list 定时轮询。
  * 2，基于 DatagramSocket 的 UDP 协议，实现服务端的主动推送。
  */
+@EnableDiscoveryClient
+@EnableCircuitBreaker    // 开启对熔断机制功能的支持
 @SpringBootApplication
 public class NacosApplication {
 
