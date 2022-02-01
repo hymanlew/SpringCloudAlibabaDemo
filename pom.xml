@@ -64,7 +64,7 @@
         <module>consumer-dept-80</module>
         <module>cloud-gateway-9527</module>
         <module>cloud-nacos-config</module>
-        <module>cloud-nacos-sentinel</module>
+        <module>single-nacos-sentinel</module>
 
         <module>single-nacos-sentinel</module>
     </modules>

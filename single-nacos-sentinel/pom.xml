@@ -10,7 +10,7 @@
 	</parent>
 
 	<artifactId>single-nacos-sentinel</artifactId>
-	<name>single-nacos-config</name>
+	<name>single-nacos-sentinel</name>
 	<description>单机服务注册流控中心</description>
 
 	<dependencies>

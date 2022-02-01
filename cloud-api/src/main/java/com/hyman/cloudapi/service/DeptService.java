@@ -3,18 +3,22 @@ package com.hyman.cloudapi.service;
 import com.hyman.cloudapi.entity.Department;
 import com.hyman.cloudapi.fallback.DeptFeignFallback;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(value = "test-base", fallbackFactory = DeptFeignFallback.class, primary = false)
+@FeignClient(value = "microservice-provider-dept", fallback = DeptFeignFallback.class, primary = false)
 public interface DeptService {
 
-    boolean addDept(Department department);
+    @PutMapping("/save")
+    boolean addDept(@RequestBody Department department);
 
-    Department findById(int id);
+    @GetMapping("/getById/{id}")
+    Department findById(@PathVariable("id") int id);
 
+    @GetMapping("/findAll")
     List<Department> findAll();
 
+    @RequestMapping("/discovery")
     Object discovery();
 }

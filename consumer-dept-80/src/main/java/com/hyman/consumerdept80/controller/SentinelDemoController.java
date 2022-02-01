@@ -1,19 +1,25 @@
 package com.hyman.consumerdept80.controller;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.hyman.cloudapi.entity.Department;
 import com.hyman.cloudapi.service.DeptService;
 import com.netflix.ribbon.proxy.annotation.Hystrix;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Nacos 是服务注册与发现，分布式配置中心，默认集成了 Ribbon，可提供客户端负载均衡。
+ * 更多 Sentinel 配置及理论概念，可参见 single-nacos-sentinel 服务。
+ * @see com.hyman.nacosconfig.controller.ParamRuleController
+ * @see com.hyman.nacosconfig.config.FlowRuleInitWithoutBoot
  */
+@Slf4j
 @RestController
 @RequestMapping("/deptConsumer")
-public class DeptController_consumer {
+public class SentinelDemoController {
 
     @Resource
     private DeptService deptService;
@@ -26,25 +32,40 @@ public class DeptController_consumer {
      * 并且在使用 @PathVariable 注解时，要指定其 value。
      */
     @GetMapping("/getById/{id}")
-    @Hystrix
     public Department findById(@PathVariable("id") Integer id){
         return deptService.findById(id);
     }
 
-    @PostMapping("/findAll")
-    public List<Department> findall(){
-        return deptService.findAll();
+    /**
+     * 若 blockHandler 和 fallback 都进行了配置，则被限流降级而抛出 BlockException 时只会进入 blockHandler 处理逻辑。若未
+     * 配置 blockHandler、fallback 和 defaultFallback，则被限流降级时会将 BlockException 直接抛出。
+     */
+    @GetMapping("/findAll")
+    @SentinelResource(value = "fallback", fallback = "handlerFallback")
+    public List<Department> findall() {
+
+        List<Department> all = deptService.findAll();
+        if(all.size() == 0){
+            throw new RuntimeException("数据为空！");
+        }
+        return all;
     }
 
-    @GetMapping("/save")
+    @PutMapping("/save")
     public boolean save(@RequestBody Department department){
         return deptService.addDept(department);
     }
 
-    // 消费者调用服务发现
+    /**
+     * 消费者调用服务发现
+     */
     @RequestMapping("/discovery")
     public Object discovery(){
         return  deptService.discovery();
     }
 
+    public List<Department> handlerFallback(Throwable throwable) {
+        log.error("handlerFallback 处理异常 --- " + throwable.getMessage());
+        return new ArrayList<>();
+    }
 }

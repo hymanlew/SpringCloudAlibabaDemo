@@ -54,6 +54,20 @@ info:
     version: @project.version@
     description: @project.description@
 
+
+# 提供 dubbo 及 nacos 配置，用于声明 dubbo 服务暴露的网络端口和协议，及服务注册的地址信息
+dubbo:
+  scan:
+    base-packages: com.hyman.providerdept8001
+  protocol:
+    name: dubbo
+    port: 20880
+
+  # dubbo 的服务注册中心地址，其参数值表示挂载到 springcloud 注册中心，不配置的话会提示错误
+  registry:
+    address: spring-cloud://localhost
+
+
 # 暴露所有的请求，以用于监控
 management:
   endpoints:

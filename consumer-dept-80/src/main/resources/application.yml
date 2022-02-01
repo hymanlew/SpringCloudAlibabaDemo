@@ -11,10 +11,23 @@ spring:
 # 而 dubbo 集成 nacos 时，服务注册依托的是 Dubbo 中的自动装配机制。是在 spring-cloud-alibaba-dubbo 下 META-INF/spring.factories
 # 文件中。所以不需要单独创建配置一个 Nacos 模块项目。
   cloud:
-      nacos:
-        discovery:
+    nacos:
+      discovery:
         # nginx 负载服务器 ip:统一访问端口（配置参考 springcloud md 文档）
         server-addr: 192.168.1.1:3333
+
+    # 给消费者配置上限流熔断策略
+    sentinel:
+      transport:
+        # sentinel 单机服务器，单独从官网下载解压并运行，默认端口就是 8080
+        dashboard: localhost:8080
+        # 默认 8719 端口，若被占用会自动从 8719 依次加 1 扫描，直到找到未占用的端口
+        port: 8719
+
+# 消费者将要访问的服务名称，即成功注册到 nacos 的提供者
+service-url:
+  nacos-provider-service: http://microservice-provider-dept
+
 
 dubbo:
   cloud:
@@ -23,9 +36,32 @@ dubbo:
     base-packages: com.hyman.consumerdept80
 
 
-# 启用熔断机制，设置响应超时时间（Hystrix 默认的超时时间是 1秒），并自动调用 api 中的 fallback 进行信息返回.
+# 启用 openfeign 熔断机制，设置响应超时时间（sentinel 默认的超时时间是 2秒），并自动调用 api 中的 fallback 进行信息返回.
 feign:
-  hystrix:
+  sentinel:
     enabled: true
   httpclient:
     connection-timeout: 3000
+
+  # feign 对 request or response 的 GZIP 压缩
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true
+
+# 如果是要打印 feign 的日志，则最低是 debug 级别，并且必须要配置在 FeignClient 服务端，且在 FeignClient 指定的配置类中声明了
+# 日志输出，否则不会输出日志。
+# 可以对每个 feignClient 进行配置。
+logging:
+  level:
+    root: info
+    org.hibernate: info
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+    org.hibernate.type.descriptor.sql.BasicExtractor: trace
+
+    # 如果需要对提供者中的类打印日志，则必须在该类指定的 FeignClient 指定的配置类中声明了日志输出 bean，否则不会打印日志
+    com.hyman.providerdepthystrix8001.controller.DeptController: debug
+
