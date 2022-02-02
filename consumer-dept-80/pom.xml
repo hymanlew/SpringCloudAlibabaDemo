@@ -29,6 +29,12 @@
 			<artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
 			<version>2.1.1.RELEASE</version>
 		</dependency>
+		<!-- sentinel 集成 nacos 的 jar，用于实现规则的持久化，推模式 -->
+		<dependency>
+			<groupId>com.alibaba.csp</groupId>
+			<artifactId>sentinel-datasource-nacos</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>

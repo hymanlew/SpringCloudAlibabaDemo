@@ -1,9 +1,9 @@
 package com.hyman.consumerdept80.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
+import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.hyman.cloudapi.entity.Department;
 import com.hyman.cloudapi.service.DeptService;
-import com.netflix.ribbon.proxy.annotation.Hystrix;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,14 +24,8 @@ public class SentinelDemoController {
     @Resource
     private DeptService deptService;
 
-    /**
-     * 当 FeignClient 中的路径使用 @RequestMapping 时，则 controller 中访问的路径不能与前者完全相同。因为这样，当请求头为
-     * Accept:application/json 时，就会报 404。或者在 FeignClient 上使用原生注解 @RequestLine，也可以解决此问题。
-     * 最主要的是要保证入参能够顺利传递进去即可。
-     *
-     * 并且在使用 @PathVariable 注解时，要指定其 value。
-     */
     @GetMapping("/getById/{id}")
+    @SentinelResource(value = "getById", fallback = "handlerFallback", blockHandler = "myBlockHandler", exceptionsToIgnore = {IllegalArgumentException.class})
     public Department findById(@PathVariable("id") Integer id){
         return deptService.findById(id);
     }
@@ -59,6 +53,13 @@ public class SentinelDemoController {
     /**
      * 消费者调用服务发现
      */
+    /**
+     * 当 FeignClient 中的路径使用 @RequestMapping 时，则 controller 中注解的路径不能与前者完全相同。因为这样，当请求头为
+     * Accept:application/json 时，就会报 404。
+     * 需要在 FeignClient 上使用原生注解 @RequestLine，和 @Headers可以解决此问题。最主要的是要保证入参能够顺利传递进去即可。
+     *
+     * 并且在使用 @PathVariable 注解时，要指定其 value。
+     */
     @RequestMapping("/discovery")
     public Object discovery(){
         return  deptService.discovery();
@@ -67,5 +68,16 @@ public class SentinelDemoController {
     public List<Department> handlerFallback(Throwable throwable) {
         log.error("handlerFallback 处理异常 --- " + throwable.getMessage());
         return new ArrayList<>();
+    }
+
+
+    public Object myBlockHandler(String id, BlockException e){
+        System.out.println("处理被流控（限流）的逻辑");
+        return null;
+    }
+
+    public String handlerFallback(String id, Throwable throwable) {
+        log.error("handlerFallback 处理异常 --- " + throwable.getMessage());
+        return "";
     }
 }

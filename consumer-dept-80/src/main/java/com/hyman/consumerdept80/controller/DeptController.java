@@ -2,7 +2,6 @@ package com.hyman.consumerdept80.controller;
 
 import com.hyman.cloudapi.entity.Department;
 import com.hyman.cloudapi.service.DeptService;
-import com.netflix.ribbon.proxy.annotation.Hystrix;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -26,7 +25,6 @@ public class DeptController {
      * 并且在使用 @PathVariable 注解时，要指定其 value。
      */
     @GetMapping("/getById/{id}")
-    @Hystrix
     public Department findById(@PathVariable("id") Integer id){
         return deptService.findById(id);
     }

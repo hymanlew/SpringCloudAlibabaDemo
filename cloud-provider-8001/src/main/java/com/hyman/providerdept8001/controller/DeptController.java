@@ -28,7 +28,6 @@ public class DeptController {
     private DiscoveryClient client;
 
     @GetMapping("/getById/{id}")
-    @SentinelResource(value = "getById", fallback = "handlerFallback", blockHandler = "myBlockHandler", exceptionsToIgnore = {IllegalArgumentException.class})
     public Department findById(@PathVariable("id") Integer id){
         return deptService.findById(id);
     }
@@ -56,14 +55,4 @@ public class DeptController {
         return list;
     }
 
-
-    public Object myBlockHandler(String id, BlockException e){
-        System.out.println("处理被流控（限流）的逻辑");
-        return null;
-    }
-
-    public String handlerFallback(String id, Throwable throwable) {
-        log.error("handlerFallback 处理异常 --- " + throwable.getMessage());
-        return "";
-    }
 }

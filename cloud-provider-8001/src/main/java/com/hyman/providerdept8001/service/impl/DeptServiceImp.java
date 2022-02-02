@@ -28,4 +28,9 @@ public class DeptServiceImp implements DeptService {
     public List<Department> findAll() {
         return deptDao.findAll();
     }
+
+    @Override
+    public Object discovery() {
+        return null;
+    }
 }
