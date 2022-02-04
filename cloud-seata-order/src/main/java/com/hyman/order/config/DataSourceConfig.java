@@ -4,14 +4,8 @@ import com.alibaba.druid.pool.DruidDataSource;
 import io.seata.rm.datasource.DataSourceProxy;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.checkerframework.checker.units.qual.Prefix;
 import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.transaction.SpringManagedTransactionFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.ServletComponentScan;
@@ -24,9 +18,11 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
-import java.beans.ConstructorProperties;
 import java.sql.SQLException;
 
+/**
+ * 使用 seata 对数据源进行代理
+ */
 @Slf4j
 @Configuration
 @ServletComponentScan
