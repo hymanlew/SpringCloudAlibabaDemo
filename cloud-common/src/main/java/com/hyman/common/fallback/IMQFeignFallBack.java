@@ -10,12 +10,13 @@ import org.springframework.stereotype.Service;
 /**
  * mq feign 回调
  *
- * @author hucl
+ * @author hyman
  * @date 2020/8/7 16:34
  */
 @Slf4j
 @Service
 public class IMQFeignFallBack implements FallbackFactory<IMQFeign> {
+
     @Override
     public IMQFeign create(Throwable throwable) {
         return new IMQFeign() {

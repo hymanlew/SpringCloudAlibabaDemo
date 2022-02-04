@@ -1,11 +1,8 @@
 package com.hyman.providerdept8001.controller;
 
-import com.alibaba.csp.sentinel.annotation.SentinelResource;
-import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.hyman.cloudapi.entity.Department;
 import com.hyman.cloudapi.service.DeptService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +19,7 @@ public class DeptController {
     private DeptService deptService;
 
     /**
-     * 对于注册进 eureka 里面的微服务，可以通过服务发现来获得该服务的信息。
+     * 对于注册进 nacos 里面的微服务，可以通过服务发现来获得该服务的信息。
      */
     @Resource
     private DiscoveryClient client;

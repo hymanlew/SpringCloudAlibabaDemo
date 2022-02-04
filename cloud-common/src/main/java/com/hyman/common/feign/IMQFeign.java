@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 /**
- * @author hucl
+ * @author hyman
  * @date 2020/8/7 16:32
  */
-@FeignClient(value = "szjw-firmiana-domain-mq", fallbackFactory = IMQFeignFallBack.class, primary = false)
+@FeignClient(value = "microservice-mq", fallbackFactory = IMQFeignFallBack.class, primary = false)
 public interface IMQFeign {
 
     /**
@@ -20,6 +20,6 @@ public interface IMQFeign {
      * @param publishMessageDTO 消息协议体
      * @return Result
      */
-    @PostMapping("/v1/mq/publish")
+    @PostMapping("/mq/publish")
     Result publish(@RequestBody PublishMessageDTO publishMessageDTO);
 }

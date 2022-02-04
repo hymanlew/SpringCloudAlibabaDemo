@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * 同步账户相关金额DTO
  *
- * @author hucl
+ * @author hyman
  * @date 2020/10/9 17:43
  */
 @Getter

@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 /**
  * 撮合打标签同步司机云的一些信息
  *
- * @author hucl
+ * @author hyman
  * @date 2021/5/21 10:05 上午
  */
 @Getter

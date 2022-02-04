@@ -2,15 +2,18 @@ package com.hyman.common.util;
 
 import cn.hutool.core.collection.CollectionUtil;
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Lists;
 import com.hyman.common.model.dto.common.RedisQueryParamDTO;
 import com.hyman.common.model.dto.redis.GeoRadiusDto;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.util.Lists;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.geo.*;
-import org.springframework.data.redis.connection.*;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.connection.RedisGeoCommands;
+import org.springframework.data.redis.connection.RedisStringCommands;
+import org.springframework.data.redis.connection.ReturnType;
 import org.springframework.data.redis.core.Cursor;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -173,7 +176,7 @@ public final class RedisUtil {
      * 批量删除缓存
      *
      * @param keyList List
-     * @author hucl
+     * @author hyman
      */
     public void del(List<String> keyList) {
         if (CollectionUtil.isNotEmpty(keyList)) {
@@ -199,7 +202,7 @@ public final class RedisUtil {
     /**
      * 普通缓存获取
      *
-     * @param 多个keys 键
+     * @param keys 多个keys键
      * @return 值
      * Warning: 包装类可能返回null
      * Warning: 包装类可能返回null
@@ -809,7 +812,7 @@ public final class RedisUtil {
             }, redisTemplate.getValueSerializer());
         } catch (Exception e) {
             log.error("批量查询用户角色的信息操作异常，异常信息:{}，参数1:{}",e,keys);
-            return Lists.emptyList();
+            return Lists.newArrayList();
         }
     }
     
@@ -834,7 +837,7 @@ public final class RedisUtil {
             }, redisTemplate.getValueSerializer());
         } catch (Exception e) {
             log.error("批量查询hash中的数据操作异常，异常信息:{}，参数1:{}",e,JSONObject.toJSON(params));
-            return Lists.emptyList();
+            return Lists.newArrayList();
         }
     }
     /**

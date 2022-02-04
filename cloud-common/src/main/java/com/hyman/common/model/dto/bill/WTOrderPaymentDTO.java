@@ -12,7 +12,7 @@ import java.util.Date;
 /**
  * 梧桐司机账户--订单线下缴费数据迁移DTO
  *
- * @author hucl
+ * @author hyman
  * @date 2020/10/27 13:38
  */
 @Getter

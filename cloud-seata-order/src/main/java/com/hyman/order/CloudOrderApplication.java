@@ -1,23 +1,23 @@
-package com.hyman.providerdept8001;
+package com.hyman.order;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
- * @EnableDiscoveryClient 注解是通用性的服务发现，可以支持其他的服务发现组件。
  * exclude 取消数据源的自动创建
  */
-@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
-@MapperScan(basePackages = "com.hyman.providerdept8001.dao")
 @EnableDiscoveryClient
-public class ProviderDept8001Application {
+@EnableFeignClients
+@MapperScan(basePackages = "com.hyman.order.dao")
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+public class CloudOrderApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProviderDept8001Application.class, args);
+		SpringApplication.run(CloudOrderApplication.class, args);
 	}
 
 }

@@ -4,7 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * 退款记录表审核状态
- * @author hucl
+ * @author hyman
  */
 public enum RefundRecordStatusEnum {
     TO_BE_APPROVE(1, "待审核"),

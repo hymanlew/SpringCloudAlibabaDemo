@@ -6,7 +6,7 @@ import lombok.Getter;
 /**
  * 市场部线索客户人群枚举
  *
- * @author hucl
+ * @author hyman
  * @date 2021/6/24 7:07 下午
  */
 @Getter

@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 /**
  * 角色对应的权限信息
- * @author hucl
+ * @author hyman
  * @date 2020/7/16 9:33
  */
 @Data

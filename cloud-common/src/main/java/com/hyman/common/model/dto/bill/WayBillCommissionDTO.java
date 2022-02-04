@@ -14,7 +14,7 @@ import java.util.Date;
 /**
  * 运费抽佣DTO
  *
- * @author hucl
+ * @author hyman
  * @date 2020/10/12 9:14
  */
 @Getter

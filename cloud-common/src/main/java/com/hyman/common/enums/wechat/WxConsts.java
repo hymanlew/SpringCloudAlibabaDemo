@@ -22,7 +22,7 @@ public class WxConsts {
     public static final String MUSIC = "music";
     public static final String LOCATION = "location";
     public static final String LINK = "link";
-    public static final String EVENT = "event";
+    public static final String EVENT = "controller";
     public static final String DEVICE_TEXT = "device_text";
     public static final String DEVICE_EVENT = "device_event";
     public static final String DEVICE_STATUS = "device_status";

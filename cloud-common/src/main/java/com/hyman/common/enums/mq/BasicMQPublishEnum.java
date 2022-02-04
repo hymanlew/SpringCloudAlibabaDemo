@@ -5,7 +5,7 @@ import lombok.Getter;
 /**
  * mq发布 基础信息
  *
- * @author hucl
+ * @author hyman
  * @date 2020/8/7 16:59
  */
 @Getter

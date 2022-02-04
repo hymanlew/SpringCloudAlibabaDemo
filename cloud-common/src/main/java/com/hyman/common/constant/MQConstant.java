@@ -1,7 +1,7 @@
 package com.hyman.common.constant;
 
 /**
- * @author hucl
+ * @author hyman
  * @date 2021/5/11 11:32 上午
  */
 public interface MQConstant {

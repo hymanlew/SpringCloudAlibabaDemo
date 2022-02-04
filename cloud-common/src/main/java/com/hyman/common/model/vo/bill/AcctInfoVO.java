@@ -8,7 +8,7 @@ import lombok.Setter;
 import java.math.BigDecimal;
 
 /**
- * @author hucl
+ * @author hyman
  * @date 2020/11/25 9:21
  */
 @Getter

@@ -1,0 +1,39 @@
+server:
+  port: 3355
+
+spring:
+  application:
+    name: microservice-order
+  # 设置上传文件大小
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+
+  # 自定义事务组名称，名称需要与 seata 安装目录，conf/file.conf service 模块下指定的名称相同
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: hyman_tx_group
+    nacos:
+      discovery:
+        server-addr: 192.168.1.1:3333
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seata_order
+    username: root
+    password: root
+
+feign:
+  sentinel:
+    enabled: true
+
+logging:
+  level:
+    io:
+      seata: info
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  config-location: classpath:mybatis-config.xml

@@ -5,7 +5,7 @@ import java.util.UUID;
 /**
  * Mq消息体基类
  *
- * @author hucl
+ * @author hyman
  * @date 2021/5/12 2:24 下午
  */
 public class BasicMQDTO {

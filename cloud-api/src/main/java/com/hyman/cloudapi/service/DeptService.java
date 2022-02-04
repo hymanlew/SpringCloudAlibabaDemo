@@ -12,7 +12,7 @@ import java.util.List;
 @FeignClient(value = "microservice-provider-dept", fallback = DeptFeignFallback.class, primary = false)
 public interface DeptService {
 
-    @PutMapping("/save")
+    @PostMapping("/save")
     boolean addDept(@RequestBody Department department);
 
     @GetMapping("/getById/{id}")

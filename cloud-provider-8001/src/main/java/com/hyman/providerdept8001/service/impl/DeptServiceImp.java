@@ -6,12 +6,13 @@ import com.hyman.cloudapi.service.DeptService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Service
 public class DeptServiceImp implements DeptService {
 
-    @Autowired
+    @Resource
     private DeptDao deptDao;
 
     @Override

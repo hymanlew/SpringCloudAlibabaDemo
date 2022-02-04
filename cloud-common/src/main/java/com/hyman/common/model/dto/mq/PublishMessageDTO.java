@@ -12,7 +12,7 @@ import java.util.Date;
 /**
  * 发布消息的传输数据对象
  *
- * @author hucl
+ * @author hyman
  * @date 2020/7/31 16:48
  */
 @Data

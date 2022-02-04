@@ -6,7 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * 司机侧-市场部线索-线索类型枚举
  *
- * @author hucl
+ * @author hyman
  * @date 2021/3/2 11:39
  * @since v2.7
  */

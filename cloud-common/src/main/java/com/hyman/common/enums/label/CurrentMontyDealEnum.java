@@ -6,7 +6,7 @@ import lombok.Getter;
 /**
  * 当月新成交枚举
  *
- * @author hucl
+ * @author hyman
  * @date 2021/5/11 3:42 下午
  */
 @AllArgsConstructor

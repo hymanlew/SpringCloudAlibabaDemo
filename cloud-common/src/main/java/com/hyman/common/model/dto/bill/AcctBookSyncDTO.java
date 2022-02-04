@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * @author hucl
+ * @author hyman
  * @date 2021/5/12 5:28 下午
  */
 @Getter

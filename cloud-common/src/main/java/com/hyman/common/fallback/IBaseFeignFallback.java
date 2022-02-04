@@ -37,10 +37,6 @@ public class IBaseFeignFallback implements FallbackFactory<IBaseFeign> {
     @Override
     public IBaseFeign create(Throwable cause) {
         return new IBaseFeign() {
-            @Override
-            public Result<Map<String, String>> getAllDutyMappingAndIntoCache() {
-                return null;
-            }
 
             @Override
             public Result<OfficeVoWitchSelected> queryUserIdUnderCityOffice(Long userId) {
@@ -68,6 +64,11 @@ public class IBaseFeignFallback implements FallbackFactory<IBaseFeign> {
             }
 
             @Override
+            public Result<BooleanResult> syncUserIdAndName(@NotNull Long userId) {
+                return null;
+            }
+
+            @Override
             public Result<List<SysCode>> qryDict() {
                 return null;
             }
@@ -75,16 +76,6 @@ public class IBaseFeignFallback implements FallbackFactory<IBaseFeign> {
             @Override
             public Result<List<DictDataVO>> getDictByType(DictDataListFORM dictDataListFORM) {
                 return null;
-            }
-
-            @Override
-            public Result<List<DictDataVO>> qryDictByType(String dictType) {
-                return null;
-            }
-
-            @Override
-            public void getALLUserToRedis() {
-
             }
 
             @Override
@@ -98,121 +89,6 @@ public class IBaseFeignFallback implements FallbackFactory<IBaseFeign> {
             }
 
             @Override
-            public void getUserOnlineCity() {
-
-            }
-
-            @Override
-            public Result<HashMap<String, Integer>> getAreaCodeByName(String provinceName, String cityName, String regionName) {
-                return null;
-            }
-
-            @Override
-            public Result<BooleanResult> syncUserIdAndName(@NotNull Long userId) {
-                return null;
-            }
-
-            @Override
-            public Result<Set<String>> getUserRolesByUserPhone(String userPhone) {
-                return null;
-            }
-
-            @Override
-            public Result<Set<String>> getUserRolesByUserId(Long userId) {
-                return null;
-            }
-
-            @Override
-            public Result<List<UserIdAndNameAndPhoneVO>> getUserInfoByRoles(List<String> roleEnNames) {
-                return null;
-            }
-
-            @Override
-            public Result<UserBasicInfoVO> getUserBasicInfo(Long userId) {
-                return null;
-            }
-
-            @Override
-            public Result<UserBasicInfoVO> getUserBasicInfoByPhone(String userPhone) {
-                return null;
-            }
-
-            @Override
-            public Result<Long> getIdByName(String name) {
-                return null;
-            }
-
-            @Override
-            public Result<UserVO> getUserByLoginName(String loginName) {
-                return null;
-            }
-
-            @Override
-            public Result<List<String>> getOnlineCityByUserId(String userid) {
-                return null;
-            }
-
-            @Override
-            public Result<Map<String, String>> getCityNameById(List<String> cityIds) {
-                return null;
-            }
-
-            @Override
-            public Result<UserVO> getUserByCorpUserId(String corpUserId) {
-                return null;
-            }
-
-            @Override
-            public Result<List<UserDTO>> getSponsorListByCitysAuth(Long userId, Set<Object> userIds, List<Object> cities, Set<Integer> busiTypes) {
-                return null;
-            }
-
-            @Override
-            public Result<List<CustomerServicePhoneDTO>> getWtSpecialBGLPhonesByCity(Integer city, @NotBlank String ename) {
-                return null;
-            }
-
-            @Override
-            public Result<List<Long>> getUserDataPermission(Long userId) {
-                return null;
-            }
-
-            @Override
-            public Result<RedisUserInfoVO> getUserBaseInfoWithCache(Long userId) {
-                return null;
-            }
-
-            @Override
-            public Result<List<RedisUserInfoVO>> getUserBaseListWithCache(List<Long> userIds) {
-                return null;
-            }
-
-            @Override
-            public Result<Set<String>> getUserPermissionURI(Long userId) {
-                return null;
-            }
-
-            @Override
-            public Result<Map<String, Integer>> syncPermissionAndDataScopeCache(Integer roleId) {
-                return null;
-            }
-
-            @Override
-            public Result<Map<String, List<Integer>>> getAndSyncDataScopeByUserId(Long userId) {
-                return null;
-            }
-
-            @Override
-            public Result<List<UserBasicInfoVO>> selectUserListByIds(@NotNull(message = "Ids不能为空") Set<Long> ids) {
-                return null;
-            }
-
-            @Override
-            public Result<List<RedisUserInfoVO>> getAllUserInfoAndIntoCache() {
-                return null;
-            }
-
-            @Override
             public Result<List<RoleAuthorityDTO>> getRoleAuthorityByRoleId(Long roleId) {
                 return null;
             }
@@ -223,29 +99,8 @@ public class IBaseFeignFallback implements FallbackFactory<IBaseFeign> {
             }
 
             @Override
-            public Result<List<StaffInfoVO>> getUserListByRoleTypeWithoutDataPermission(int roleType) {
-                return null;
-            }
-
-            @Override
-            public Result<List<StaffInfoVO>> querySpecifiedLowerUserList(Long userId, QuerySpecifiedLowerUserListFORM form) {
-                return null;
-            }
-
-            @Override
-            public Result<List<OpenCityVO>> getOpenCityData(String keyword) {
-                return null;
-            }
-
-            @Override
             public Result<List<StaffActiveInfoVO>> querySpecifiedActiveUserList(QuerySpecifiedUserListForm form) {
                 return null;
-            }
-
-            @Override
-            public Result<List<UserIdAndOfficeIdAndStatusVO>> getUserInfoByCityAndBusiLine(String cityCode, Integer busiType, Set<Integer> roleTypes) {
-                log.warn("【根据城市和产品线查询指定的用户信息】查询失败，请求参数=[{},{},{}], 异常信息=[{}]", cityCode, busiType, roleTypes, cause.getMessage());
-                return new Result<>(false);
             }
 
             @Override
@@ -253,19 +108,6 @@ public class IBaseFeignFallback implements FallbackFactory<IBaseFeign> {
                 log.warn("根据roleIds=[{}]查询用户信息s失败, 异常信息=[{}]", roleIds, cause);
                 return null;
             }
-
-            @Override
-            public Result<List<AreaVO>> getReginByCityCode(String city) {
-                log.warn("根据城市编号{}查询区域编号失败, 异常信息=[{}]", city, cause);
-                return new Result<>(false);
-            }
-
-//            @Override
-//            public Result<List<UserBasicInfoVO>> getUserBasicInfoList(@Size(min = 1) Set<Long> userId) {
-//                return null;
-//            }
-
-
         };
     }
 }

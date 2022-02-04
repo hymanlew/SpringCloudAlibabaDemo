@@ -5,7 +5,7 @@ import java.lang.annotation.*;
 /**
  * 消费去重
  *
- * @author hucl
+ * @author hyman
  * @date 2021/6/8 2:45 下午
  */
 @Target(ElementType.METHOD)
