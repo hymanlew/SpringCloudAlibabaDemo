@@ -1,0 +1,22 @@
+
+server:
+  port: 7002
+
+spring:
+  application:
+    name: microservice-order-sleuth
+
+  # nacos 集群地址
+  cloud:
+    nacos:
+      discovery:
+        # nginx 负载服务器 ip:统一访问端口（配置参考 springcloud md 文档）
+        server-addr: 192.168.1.1:3333
+
+  # 链路追踪系统
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      # 采样率值介于 0 到 1 之间，1 表示全部采集
+      probability: 1

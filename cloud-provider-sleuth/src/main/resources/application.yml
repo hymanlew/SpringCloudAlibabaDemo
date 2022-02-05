@@ -11,7 +11,7 @@ mybatis:
 spring:
   application:
 #   这个名字很重要，是注册到注册中心必须用到的，也是服务发现时用到的名字。并且必须要对外显露统一的服务实例名称，不能更改。
-    name: microservice-provider-dept
+    name: microservice-provider-sleuth
   datasource:
 #   数据源基本配置
     username: root
@@ -36,8 +36,21 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
-      
 
+  # nacos 集群地址
+  cloud:
+    nacos:
+      discovery:
+        # nginx 负载服务器 ip:统一访问端口（配置参考 springcloud md 文档）
+        server-addr: 192.168.1.1:3333
+
+  # 链路追踪系统
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      # 采样率值介于 0 到 1 之间，1 表示全部采集
+      probability: 1
 
 # 自定义显示项目的描述信息，需要注意，要在父工程中进行资源访问的配置（resources 标签加 maven-resources-plugin 插件）
 info:

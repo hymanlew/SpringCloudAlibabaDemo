@@ -9,28 +9,21 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<groupId>com.hyman</groupId>
-	<artifactId>cloud-eureka-7002</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>cloud-eureka-7002</name>
+	<artifactId>cloud-order-sleuth</artifactId>
+	<name>cloud-order-sleuth</name>
 	<description>Demo project for Spring Boot</description>
 
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+			<groupId>com.hyman</groupId>
+			<artifactId>cloud-common</artifactId>
+			<version>${project.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<optional>true</optional>
-		</dependency>
+
+		<!-- 包含了 sleuth + zipkin -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-dependencies</artifactId>
-			<version>${spring-cloud.version}</version>
-			<type>pom</type>
-			<scope>import</scope>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
 		</dependency>
 	</dependencies>
 

@@ -3,11 +3,9 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.hyman</groupId>
-	<artifactId>provider-dept-8003</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>cloud-provider-sleuth</artifactId>
 	<name>provider-dept-8003</name>
-	<description>部门微服务的提供者3</description>
+	<description>部门微服务链路追踪</description>
 
 	<parent>
 		<!-- 子项目中需要显示声明父类，才能有明确的继承表现，无意外就是父类的默认版本否则自己定义（这里是手动添加的） -->
@@ -23,31 +21,21 @@
 			<artifactId>cloud-api</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		<!-- actuator 监控信息完善 -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<!-- optional=true，依赖不会往下传递，如果有项目依赖本项目，并且想要使用devtools，需要重新引入 -->
-			<optional>true</optional>
+			<groupId>com.hyman</groupId>
+			<artifactId>cloud-common</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 
-		<!-- 将微服务provider侧注册进eureka -->
+		<!-- 包含了 sleuth + zipkin -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+			<artifactId>spring-cloud-starter-zipkin</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-config</artifactId>
-		</dependency>
+
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.15</version>
 		</dependency>
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -57,15 +45,11 @@
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
 	</dependencies>
 
 	<!-- 构建特殊配置信息，因为在构建Maven项目的时候，如果没有进行特殊的配置，Maven会按照标准的目录结构查找和处理各种类型文件。 -->
 	<build>
-		<finalName>SpringCloudAlibabaDemo</finalName>
+		<finalName>cloud-provider-sleuth</finalName>
 		<!-- 通过 resource 标签来指定加载配置文件，也可以指定访问的资源的路径 -->
 		<resources>
 			<resource>
